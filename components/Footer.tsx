@@ -28,12 +28,12 @@ const Footer: React.FC = () => {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-start gap-16 mb-20">
           <div className="space-y-8">
-            <div className="h-10 flex items-center">
+            <div className="h-20 sm:h-24 md:h-28 lg:h-36 flex items-center">
               <img 
-                src={CONTACT_CONFIG.logoUrl} 
-                alt="Logo Arquitectura Web" 
-                className="h-full w-auto object-contain brightness-0 invert"
-              />
+                  src={CONTACT_CONFIG.logoUrl} 
+                  alt="Logo Arquitectura Web" 
+                  className="h-full w-auto object-contain"
+                />
             </div>
             <p className="text-white/30 text-lg max-w-sm leading-relaxed font-light">
               Creamos sitios web profesionales para que tu negocio crezca en el mundo digital.

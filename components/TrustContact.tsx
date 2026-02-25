@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MessageSquare, Mail, Send, CheckCircle } from 'lucide-react';
-import { openWhatsApp } from '../utils/whatsapp';
+import { MessageSquare, Send, CheckCircle } from 'lucide-react';
+import { openWhatsApp, openEmail } from '../utils/whatsapp';
 
 const TrustContact: React.FC = () => {
   const [method, setMethod] = useState<'wa' | 'form'>('wa');
   const [sent, setSent] = useState(false);
+  const [name, setName] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
+  const [message, setMessage] = useState('');
 
   return (
     <section id="contacto" className="py-32 bg-[#050505] scroll-mt-20">
@@ -78,7 +81,13 @@ const TrustContact: React.FC = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="space-y-6" 
-                onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const subject = `Consulta desde web: ${name || 'Sin nombre'}`;
+                  const body = `Nombre: ${name}\nEmail: ${contactEmail}\n\n${message}`;
+                  openEmail(subject, body);
+                  setSent(true);
+                }}
               >
                 {sent ? (
                   <div className="py-20 text-center space-y-6">
@@ -88,9 +97,9 @@ const TrustContact: React.FC = () => {
                   </div>
                 ) : (
                   <>
-                    <input required type="text" placeholder="Su nombre" className="w-full p-6 bg-white/5 border border-white/10 rounded-2xl text-sm focus:border-indigo-500 outline-none text-white transition-colors" />
-                    <input required type="email" placeholder="Email de contacto" className="w-full p-6 bg-white/5 border border-white/10 rounded-2xl text-sm focus:border-indigo-500 outline-none text-white transition-colors" />
-                    <textarea required placeholder="Cuéntenos sobre su proyecto..." className="w-full p-6 bg-white/5 border border-white/10 rounded-2xl text-sm h-40 outline-none focus:border-indigo-500 resize-none text-white transition-colors"></textarea>
+                    <input value={name} onChange={(e) => setName(e.target.value)} required type="text" placeholder="Su nombre" className="w-full p-6 bg-white/5 border border-white/10 rounded-2xl text-sm focus:border-indigo-500 outline-none text-white transition-colors" />
+                    <input value={contactEmail} onChange={(e) => setContactEmail(e.target.value)} required type="email" placeholder="Email de contacto" className="w-full p-6 bg-white/5 border border-white/10 rounded-2xl text-sm focus:border-indigo-500 outline-none text-white transition-colors" />
+                    <textarea value={message} onChange={(e) => setMessage(e.target.value)} required placeholder="Cuéntenos sobre su proyecto..." className="w-full p-6 bg-white/5 border border-white/10 rounded-2xl text-sm h-40 outline-none focus:border-indigo-500 resize-none text-white transition-colors"></textarea>
                     <button type="submit" className="w-full bg-white text-black font-bold py-6 rounded-full flex items-center justify-center gap-3 hover:bg-indigo-500 hover:text-white transition-all uppercase tracking-[0.2em] text-xs">
                       Enviar Mensaje <Send size={18} />
                     </button>

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 import { CONTACT_CONFIG } from '../utils/whatsapp';
 import { scrollToSection } from '../utils/scroll';
 
 const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -14,7 +16,15 @@ const Header: React.FC = () => {
 
   const scrollTo = (id: string) => {
     scrollToSection(id);
+    setMobileMenuOpen(false);
   };
+
+  const navItems = [
+    { id: 'enfoque', label: 'Nosotros' },
+    { id: 'servicios', label: 'Servicios' },
+    { id: 'metodologia', label: 'Proceso' },
+    { id: 'contacto', label: 'Contacto' }
+  ];
 
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'py-4 bg-black/80 backdrop-blur-md border-b border-white/10' : 'py-8 bg-transparent'}`}>
@@ -24,11 +34,12 @@ const Header: React.FC = () => {
           animate={{ opacity: 1, x: 0 }}
           href="#inicio" 
           onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} 
-          className="h-16"
+          className="h-20 sm:h-24 md:h-28 lg:h-36"
         >
-          <img src={CONTACT_CONFIG.logoUrl} alt="Arquitectura Web" className="h-full w-auto object-contain brightness-0 invert" />
+          <img src={CONTACT_CONFIG.logoUrl} alt="Arquitectura Web" className="h-full w-auto object-contain" />
         </motion.a>
         
+        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-12">
           {[
             { id: 'enfoque', label: 'Nosotros' },
@@ -56,7 +67,39 @@ const Header: React.FC = () => {
             Contacto
           </motion.button>
         </nav>
+
+        {/* Mobile Menu Button */}
+        <button 
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden p-2 text-white hover:text-white/70 transition-colors"
+        >
+          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="md:hidden bg-black/95 backdrop-blur-md border-b border-white/10"
+          >
+            <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollTo(item.id)}
+                  className="text-left py-3 text-white hover:text-cyan-400 transition-colors font-bold uppercase tracking-widest"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

@@ -9,31 +9,20 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-[#050505]">
+    <section id="inicio" className="relative min-h-screen flex items-center pt-40 sm:pt-32 md:pt-28 lg:pt-20 pb-12 overflow-hidden bg-[#050505]">
       {/* Background elements */}
       <div className="absolute inset-0 bg-grid-subtle opacity-40"></div>
       <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[800px] h-[800px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-16 items-center">
-          <div className="lg:col-span-8 space-y-12">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-3 px-4 py-1 border border-white/10 rounded-full bg-white/5 backdrop-blur-sm"
-            >
-              <div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></div>
-              <span className="mono-label !text-white/60">
-                Ingeniería Digital Premium
-              </span>
-            </motion.div>
-
+        <div className="grid md:grid-cols-12 gap-6 md:gap-12 lg:gap-16 items-start md:items-center">
+          <div className="md:col-span-6 lg:col-span-8 space-y-4 sm:space-y-6 lg:space-y-8">
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-[12vw] lg:text-[110px] font-black leading-[0.85] tracking-tighter uppercase"
+              className="text-4xl sm:text-4xl md:text-4xl lg:text-6xl xl:text-7xl 2xl:text-[110px] font-black leading-[1.05] sm:leading-[1] md:leading-[1] lg:leading-[0.9] xl:leading-[0.85] tracking-tighter uppercase"
             >
               Tu negocio <br />
               <span className="text-gradient">en la web</span> <br />
@@ -44,7 +33,7 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-white/50 text-xl md:text-2xl leading-relaxed max-w-2xl font-light"
+              className="text-xs sm:text-sm md:text-base lg:text-xl xl:text-2xl text-white/50 leading-relaxed max-w-2xl font-light"
             >
               Landing pages, sitios institucionales o desarrollos a medida. Elige la opción que tu negocio necesita y comienza a generar resultados.
             </motion.p>
@@ -53,7 +42,7 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-6"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2"
             >
               <button 
                 onClick={() => scrollTo('contacto')}
@@ -70,7 +59,7 @@ const Hero: React.FC = () => {
             </motion.div>
           </div>
 
-          <div className="lg:col-span-4 hidden lg:block">
+          <div className="md:col-span-6 lg:col-span-4 hidden md:block">
             <motion.div 
               initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
