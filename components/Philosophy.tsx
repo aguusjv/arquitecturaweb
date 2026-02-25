@@ -22,7 +22,7 @@ const Philosophy: React.FC = () => {
   ];
 
   return (
-    <section id="enfoque" className="py-32 bg-[#050505] text-white relative overflow-hidden scroll-mt-20 border-y border-white/5">
+    <section id="enfoque" className="py-24 md:py-32 bg-[#0a0f1a] text-white relative overflow-hidden scroll-mt-20 border-y border-white/5">
       <div className="absolute top-0 left-0 w-full h-full bg-grid-subtle opacity-20"></div>
       
       <div className="container mx-auto px-6 relative z-10">

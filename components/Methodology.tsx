@@ -10,7 +10,7 @@ const steps: Step[] = [
 
 const Methodology: React.FC = () => {
   return (
-    <section id="metodologia" className="py-32 bg-[#050505] scroll-mt-20 border-t border-white/5">
+    <section id="metodologia" className="py-24 md:py-32 bg-[#0a0f1a] scroll-mt-20 border-t border-white/5">
       <div className="container mx-auto px-6">
         <div className="mb-24">
           <span className="mono-label mb-4 block">Paso a paso</span>

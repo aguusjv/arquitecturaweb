@@ -31,7 +31,7 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <section id="servicios" className="py-32 bg-[#050505] scroll-mt-20">
+    <section id="servicios" className="py-24 md:py-32 bg-[#0f1420] scroll-mt-20">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-end justify-between mb-24 gap-12">
           <div className="max-w-2xl space-y-6">

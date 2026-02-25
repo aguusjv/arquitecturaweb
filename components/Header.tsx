@@ -34,7 +34,7 @@ const Header: React.FC = () => {
           animate={{ opacity: 1, x: 0 }}
           href="#inicio" 
           onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} 
-          className="h-20 sm:h-24 md:h-28 lg:h-36"
+          className="h-24 sm:h-28 md:h-32 lg:h-40"
         >
           <img src={CONTACT_CONFIG.logoUrl} alt="Arquitectura Web" className="h-full w-auto object-contain" />
         </motion.a>
@@ -52,7 +52,7 @@ const Header: React.FC = () => {
               transition={{ delay: i * 0.1 }}
               key={item.id} 
               onClick={() => scrollTo(item.id)} 
-              className="mono-label hover:text-white transition-colors"
+              className="text-sm font-bold uppercase tracking-widest hover:text-white transition-colors"
             >
               {item.label}
             </motion.button>
